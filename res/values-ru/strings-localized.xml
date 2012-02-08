@@ -1,0 +1,35 @@
+<resources>
+    <string name="connection_tips">Подождите несколько секунд и piHotKeys подключится к вашему компьютеру автоматически.\n\n
+        Если вы все так-же видите это сообщение по прошествии 10 секунд, значит вам следует выполнить простую настройку
+        вашего компьютера:\n\n
+        1. Загрузите и установите на него приложение piServer с сайта <b>pilgr.com</b>\n\n
+        2. Для беспроводного управления компьютером подключите это устройство и компьютер к одной и той-же Wi-Fi сети
+        \n\n
+        В случае подключения по USB просто установите драйвер для вашего устройства и перезапустите piServer на
+        компьютере.
+        Убедитесь, что галочка \"Отладка по USB\" установлена в настройках \"Приложения/Разработка\"\n\n
+        3. Перезапустите piHotKeys и подождите автоматического соединения с компьютером
+    </string>
+    <string name="auto_connecting">Подключение...</string>
+    <string name="how_to_connect">Как подключиться?</string>
+    <string name="menu_feedback">Высказать автору</string>
+    <string name="about">Панель горячих клавиш для ПК\n\nСоздается Алексеем Масным\npilgr.com\naleksey.masny@gmail.com
+    </string>
+    <string name="enter_pin">Ввести PIN</string>
+    <string name="enter_pin_details">На вашем компьютере показан пин-код во всплывающем сообщении возле часиков. Введите
+        его ниже для авторизации. Код показывается несколько секунд. Если вы его уже не видите, просто нажмите еще раз
+        кнопку ввода пин-кода
+    </string>
+
+    <string name="donateActivityLabel">Пожертвовать</string>
+    <string name="lblDonate">Спонсировать</string>
+    <string name="lblDonateMessage">Ваш добровольный платеж позволит и дальше активно развивать piHotKeys. Оплата
+        осуществляется через Android Market. Всего хорошего!
+    </string>
+
+    <string name="dialog_rate_app_header">Оценить piHotKeys</string>
+    <string name="dialog_rate_app_body">Вам нравится piHotKeys? Поставьте ему достойную оценку!</string>
+
+    <string name="menuAbout">О приложении</string>
+
+</resources>

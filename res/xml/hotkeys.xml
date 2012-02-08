@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Apps>
+    <os name="windows">
+
+        <!--Windows-->
+        <hotkey id="@+id/oskey_alttab" shortcut="Alt+Tab"/>
+        <hotkey id="@+id/oskey_switch_window_start" shortcut="$Win+Tab+$100"/>
+        <hotkey id="@+id/oskey_switch_window_next" shortcut="Tab"/>
+        <hotkey id="@+id/oskey_switch_window_prev" shortcut="Shift+Tab"/>
+        <hotkey id="@+id/oskey_switch_window_finish" shortcut="Win$"/>
+        <!--<hotkey id="@+id/oskey_switch_window_start" shortcut="$Alt+Tab+$100"/>
+        <hotkey id="@+id/oskey_switch_window_next" shortcut="Tab"/>
+        <hotkey id="@+id/oskey_switch_window_prev" shortcut="Shift+Tab"/>
+        <hotkey id="@+id/oskey_switch_window_finish" shortcut="Alt$"/>-->
+
+        <command id="@+id/oscommand_lock_computer" text="rundll32.exe user32.dll, LockWorkStation "/>
+
+        <!--EXPLORER.EXE-->
+        <application id="@+id/pcapp_explorer" name="Windows" procname="EXPLORER.EXE">
+        </application>
+
+        <!--IDEA-->
+        <application id="@+id/pcapp_intellij_idea" name="IntelliJ IDEA" procname="idea.exe">
+            <hotbtn id="@id/hotbtn_vol_up" shortcut="Ctrl+Alt+Right"/>
+            <hotbtn id="@id/hotbtn_vol_down" shortcut="Ctrl+Alt+Left"/>
+            <hotkey id="@+id/hotkey_run" shortcut="Shift+F10" label="run"/>
+            <hotkey id="@+id/hotkey_debug" shortcut="Shift+F9" label="debug"/>
+            <hotkey id="@+id/hotkey_goto_file" shortcut="Ctrl+Shift+N" label="to file"/>
+            <hotkey id="@+id/hotkey_cvs_commit" shortcut="Ctrl+K" label="commit"/>
+            <hotkey id="@+id/hotkey_cvs_update" shortcut="Ctrl+T" label="update"/>
+            <hotkey id="@+id/hotkey_project_structure" shortcut="Ctrl+Alt+Shift+S" label="project\nstructure"/>
+            <hotkey id="@+id/hotkey_structure_popup" shortcut="Ctrl+F12" label="structure\npopup"/>
+            <hotkey id="@+id/hotkey_find_usages" shortcut="Alt+F7" label="find\nusages"/>
+            <hotkey id="@+id/hotkey_hide_show_windows" shortcut="Ctrl+Shift+F12" label="hide/show\nwindows"/>
+            <hotkey id="@+id/hotkey_close" shortcut="Ctrl+F4" label="close"/>
+        </application>
+
+        <!--Eclipse-->
+        <application id="@+id/pcapp_eclipse" name="Eclipse" procname="eclipse.exe">
+            <hotkey id="@+id/hotkey_run" shortcut="Ctrl+F11" label="run"/>
+            <hotkey id="@+id/hotkey_debug" shortcut="F11" label="debug"/>
+            <hotkey id="@+id/hotkey_open_resource" shortcut="Ctrl+Shift+R" label="open resource"/>
+            <hotkey id="@+id/hotkey_open_type" shortcut="Ctrl+Shift+T" label="open type"/>
+            <hotkey id="@+id/hotkey_quick_outline" shortcut="Ctrl+O" label="quick outline"/>
+            <hotkey id="@+id/hotkey_to_editors" shortcut="Ctrl+E" label="to editors"/>
+            <hotkey id="@+id/hotkey_close" shortcut="Ctrl+F4" label="close"/>
+        </application>
+
+        <!--Chrome-->
+        <application id="@+id/pcapp_google_chrome" name="Google Chrome" procname="chrome.exe">
+            <hotbtn id="@id/hotbtn_vol_up" shortcut="Ctrl+Tab"/>
+            <hotbtn id="@id/hotbtn_vol_down" shortcut="Ctrl+Shift+Tab"/>
+            <hotkey id="@+id/hotkey_address_bar" shortcut="Ctrl+L" label="address\nbar"/>
+            <hotkey id="@+id/hotkey_prev_tab" shortcut="Ctrl+Shift+Tab" label="previous\ntab"/>
+            <hotkey id="@+id/hotkey_next_tab" shortcut="Ctrl+Tab" label="next\ntab"/>
+            <hotkey id="@+id/hotkey_new_tab" shortcut="Ctrl+T" label="new\ntab"/>
+            <hotkey id="@+id/hotkey_close_tab" shortcut="Ctrl+F4" label="close\ntab"/>
+            <hotkey id="@+id/hotkey_open_last_closed" shortcut="Ctrl+Shift+T" label="open\nclosed tab"/>
+            <hotkey id="@+id/hotkey_history" shortcut="Ctrl+H" label="history"/>
+            <hotkey id="@+id/hotkey_downloads" shortcut="Ctrl+J" label="downloads"/>
+            <hotkey id="@+id/hotkey_to_favorites" shortcut="Ctrl+D" label="to favorites"/>
+        </application>
+
+        <!--Firefox-->
+        <application id="@+id/pcapp_firefox" name="Mozilla Firefox" procname="firefox.exe">
+            <hotbtn id="@id/hotbtn_vol_up" shortcut="Ctrl+Tab"/>
+            <hotbtn id="@id/hotbtn_vol_down" shortcut="Ctrl+Shift+Tab"/>
+            <hotkey id="@+id/hotkey_address_bar" shortcut="Ctrl+L" label="address\nbar"/>
+            <hotkey id="@+id/hotkey_prev_tab" shortcut="Ctrl+Shift+Tab" label="previous\ntab"/>
+            <hotkey id="@+id/hotkey_next_tab" shortcut="Ctrl+Tab" label="next\ntab"/>
+            <hotkey id="@+id/hotkey_new_tab" shortcut="Ctrl+T" label="new\ntab"/>
+            <hotkey id="@+id/hotkey_close_tab" shortcut="Ctrl+F4" label="close\ntab"/>
+            <hotkey id="@+id/hotkey_history" shortcut="Ctrl+H" label="history"/>
+            <hotkey id="@+id/hotkey_downloads" shortcut="Ctrl+J" label="downloads"/>
+            <hotkey id="@+id/hotkey_to_favorites" shortcut="Ctrl+D" label="to favorites"/>
+            <hotkey id="@+id/hotkey_open_favorites" shortcut="Ctrl+I" label="open\nfavorites"/>
+        </application>
+
+        <!--IE-->
+        <application id="@+id/pcapp_ie" name="Internet Explorer" procname="iexplore.exe">
+            <hotbtn id="@id/hotbtn_vol_up" shortcut="Ctrl+Tab"/>
+            <hotbtn id="@id/hotbtn_vol_down" shortcut="Ctrl+Shift+Tab"/>
+            <hotkey id="@+id/hotkey_address_bar" shortcut="Ctrl+L" label="address\nbar"/>
+            <hotkey id="@+id/hotkey_prev_tab" shortcut="Ctrl+Shift+Tab" label="previous\ntab"/>
+            <hotkey id="@+id/hotkey_next_tab" shortcut="Ctrl+Tab" label="next\ntab"/>
+            <hotkey id="@+id/hotkey_new_tab" shortcut="Ctrl+T" label="new\ntab"/>
+            <hotkey id="@+id/hotkey_close_tab" shortcut="Ctrl+F4" label="close\ntab"/>
+            <hotkey id="@+id/hotkey_history" shortcut="Ctrl+H" label="history"/>
+            <hotkey id="@+id/hotkey_downloads" shortcut="Ctrl+J" label="downloads"/>
+            <hotkey id="@+id/hotkey_to_favorites" shortcut="Ctrl+D" label="to favorites"/>
+            <hotkey id="@+id/hotkey_open_favorites" shortcut="Ctrl+I" label="open\nfavorites"/>
+        </application>
+
+        <!--Skype-->
+        <application id="@+id/pcapp_skype" name="Skype" procname="skype.exe">
+            <hotbtn id="@id/hotbtn_vol_up" shortcut="Up"/>
+            <hotbtn id="@id/hotbtn_vol_down" shortcut="Down"/>
+            <hotkey id="@+id/hotkey_contacts" shortcut="Alt+1" label="contacts"/>
+            <hotkey id="@+id/hotkey_recent" shortcut="Alt+2" label="recent"/>
+        </application>
+
+        <!--VLC-->
+        <application id="@+id/pcapp_vlc" name="VLC" procname="vlc.exe">
+            <hotbtn id="@id/hotbtn_vol_up" shortcut="Ctrl+Up"/>
+            <hotbtn id="@id/hotbtn_vol_down" shortcut="Ctrl+Down"/>
+            <hotkey id="@+id/hotkey_previous" shortcut="P" label="previous"/>
+            <hotkey id="@+id/hotkey_play_pause" shortcut="Space" label="play/pause"/>
+            <hotkey id="@+id/hotkey_next" shortcut="N" label="next"/>
+            <hotkey id="@+id/hotkey_volume_minus" shortcut="Ctrl+Down" label="vol -"/>
+            <hotkey id="@+id/hotkey_volume_plus" shortcut="Ctrl+Up" label="vol +"/>
+            <hotkey id="@+id/hotkey_mute" shortcut="M" label="mute"/>
+        </application>
+
+        <!--Media Player Classic-->
+        <application id="@+id/pcapp_media_player_classic" name="Media Player Classic" procname="mpc-hc.exe">
+            <hotbtn id="@id/hotbtn_vol_up" shortcut="Up"/>
+            <hotbtn id="@id/hotbtn_vol_down" shortcut="Down"/>
+            <hotkey id="@+id/hotkey_previous" shortcut="PgUp" label="previous"/>
+            <hotkey id="@+id/hotkey_play_pause" shortcut="Space" label="play/pause"/>
+            <hotkey id="@+id/hotkey_next" shortcut="PgDn" label="next"/>
+            <hotkey id="@+id/hotkey_volume_minus" shortcut="Down" label="vol -"/>
+            <hotkey id="@+id/hotkey_volume_plus" shortcut="Up" label="vol +"/>
+            <hotkey id="@+id/hotkey_mute" shortcut="Ctrl+M" label="mute"/>
+            <hotkey id="@+id/hotkey_full_screen" shortcut="Alt+Enter" label="full screen"/>
+        </application>
+
+        <!--KMPlayer-->
+        <application id="@+id/pcapp_kmplayer" name="KMPlayer" procname="KMPlayer.exe">
+            <hotbtn id="@id/hotbtn_vol_up" shortcut="Up"/>
+            <hotbtn id="@id/hotbtn_vol_down" shortcut="Down"/>
+            <hotkey id="@+id/hotkey_previous" shortcut="PgUp" label="previous"/>
+            <hotkey id="@+id/hotkey_play_pause" shortcut="Space" label="play/pause"/>
+            <hotkey id="@+id/hotkey_next" shortcut="PgDn" label="next"/>
+            <hotkey id="@+id/hotkey_volume_minus" shortcut="Down" label="vol -"/>
+            <hotkey id="@+id/hotkey_volume_plus" shortcut="Up" label="vol +"/>
+            <hotkey id="@+id/hotkey_mute" shortcut="M" label="mute"/>
+            <hotkey id="@+id/hotkey_full_screen" shortcut="Alt+Enter" label="full screen"/>
+        </application>
+
+        <!--SPlayer-->
+        <application id="@+id/pcapp_splayer" name="SPlayer" procname="splayer.exe">
+            <hotbtn id="@id/hotbtn_vol_up" shortcut="Up"/>
+            <hotbtn id="@id/hotbtn_vol_down" shortcut="Down"/>
+            <hotkey id="@+id/hotkey_play_pause" shortcut="Space" label="play/pause"/>
+            <hotkey id="@+id/hotkey_volume_minus" shortcut="Down" label="vol -"/>
+            <hotkey id="@+id/hotkey_volume_plus" shortcut="Up" label="vol +"/>
+        </application>
+
+        <!--Winamp-->
+        <application id="@+id/pcapp_winamp" name="Winamp" procname="winamp.exe">
+            <hotbtn id="@id/hotbtn_vol_up" shortcut="Up"/>
+            <hotbtn id="@id/hotbtn_vol_down" shortcut="Down"/>
+            <hotkey id="@+id/hotkey_previous" shortcut="Z" label="previous"/>
+            <hotkey id="@+id/hotkey_play" shortcut="X" label="play"/>
+            <hotkey id="@+id/hotkey_pause" shortcut="C" label="pause"/>
+            <hotkey id="@+id/hotkey_next" shortcut="B" label="next"/>
+            <hotkey id="@+id/hotkey_volume_minus" shortcut="Down" label="vol -"/>
+            <hotkey id="@+id/hotkey_volume_plus" shortcut="Up" label="vol +"/>
+            <hotkey id="@+id/hotkey_repeat" shortcut="R" label="repeat"/>
+            <hotkey id="@+id/hotkey_shuffle" shortcut="S" label="shuffle"/>
+        </application>
+
+        <!--AIMP3-->
+        <application id="@+id/pcapp_aimp3" name="AIMP3" procname="AIMP3.exe">
+            <hotbtn id="@id/hotbtn_vol_up" shortcut="Ctrl+Up"/>
+            <hotbtn id="@id/hotbtn_vol_down" shortcut="Ctrl+Down"/>
+            <hotkey id="@+id/hotkey_previous" shortcut="F1" label="previous"/>
+            <hotkey id="@+id/hotkey_play_pause" shortcut="Space" label="play/pause"/>
+            <hotkey id="@+id/hotkey_next" shortcut="F2" label="next"/>
+            <hotkey id="@+id/hotkey_volume_minus" shortcut="Ctrl+Down" label="vol -"/>
+            <hotkey id="@+id/hotkey_volume_plus" shortcut="Ctrl+Up" label="vol +"/>
+            <hotkey id="@+id/hotkey_repeat" shortcut="R" label="repeat"/>
+            <hotkey id="@+id/hotkey_shuffle" shortcut="S" label="shuffle"/>
+            <hotkey id="@+id/hotkey_mute" shortcut="V" label="mute"/>
+        </application>
+
+        <!--AIMP2-->
+        <application id="@+id/pcapp_aimp2" name="AIMP2" procname="AIMP2.exe">
+            <hotbtn id="@id/hotbtn_vol_up" shortcut="Ctrl+Up"/>
+            <hotbtn id="@id/hotbtn_vol_down" shortcut="Ctrl+Down"/>
+            <hotkey id="@+id/hotkey_previous" shortcut="F1" label="previous"/>
+            <hotkey id="@+id/hotkey_play_pause" shortcut="Space" label="play/pause"/>
+            <hotkey id="@+id/hotkey_next" shortcut="F2" label="next"/>
+            <hotkey id="@+id/hotkey_volume_minus" shortcut="Ctrl+Down" label="vol -"/>
+            <hotkey id="@+id/hotkey_volume_plus" shortcut="Ctrl+Up" label="vol +"/>
+            <hotkey id="@+id/hotkey_repeat" shortcut="R" label="repeat"/>
+            <hotkey id="@+id/hotkey_shuffle" shortcut="S" label="shuffle"/>
+            <hotkey id="@+id/hotkey_mute" shortcut="V" label="mute"/>
+        </application>
+
+        <!--Windows Media Player-->
+        <application id="@+id/pcapp_windows_media_player" name="Windows Media Player" procname="wmplayer.exe">
+            <hotbtn id="@id/hotbtn_vol_up" shortcut="F9"/>
+            <hotbtn id="@id/hotbtn_vol_down" shortcut="F8"/>
+            <hotkey id="@+id/hotkey_previous" shortcut="Ctrl+B" label="previous"/>
+            <hotkey id="@+id/hotkey_play_pause" shortcut="Ctrl+P" label="play/pause"/>
+            <hotkey id="@+id/hotkey_next" shortcut="Ctrl+F" label="next"/>
+            <hotkey id="@+id/hotkey_volume_minus" shortcut="F8" label="vol -"/>
+            <hotkey id="@+id/hotkey_volume_plus" shortcut="F9" label="vol +"/>
+            <hotkey id="@+id/hotkey_repeat" shortcut="Ctrl+T" label="repeat"/>
+            <hotkey id="@+id/hotkey_shuffle" shortcut="Ctrl+H" label="shuffle"/>
+            <hotkey id="@+id/hotkey_full_screen" shortcut="Alt+Enter" label="video full screen"/>
+        </application>
+
+        <!--FAR-->
+        <application id="@+id/pcapp_far" name="Far" procname="far.exe">
+            <hotkey id="@+id/hotkey_find_file" shortcut="Alt+F7" label="find file"/>
+            <hotkey id="@+id/hotkey_file_history" shortcut="Alt+F11" label="files history"/>
+            <hotkey id="@+id/hotkey_folder_history" shortcut="Alt+F12" label="folders history"/>
+            <hotkey id="@+id/hotkey_to_archive" shortcut="Shift+F1" label="to archive"/>
+            <hotkey id="@+id/hotkey_swap_panels" shortcut="Ctrl+U" label="swap panels"/>
+            <hotkey id="@+id/hotkey_panels_on_off" shortcut="Ctrl+O" label="panels on off"/>
+        </application>
+
+        <!--Photoshop-->
+        <application id="@+id/pcapp_photoshop" name="Photoshop" procname="photoshop.exe">
+            <hotkey id="@+id/hotkey_move" shortcut="V" label="move"/>
+            <hotkey id="@+id/hotkey_marquee" shortcut="M" label="marquee"/>
+            <hotkey id="@+id/hotkey_lasso" shortcut="L" label="lasso"/>
+            <hotkey id="@+id/hotkey_quick_selection" shortcut="W" label="quick selection"/>
+            <hotkey id="@+id/hotkey_crop" shortcut="C" label="crop"/>
+            <hotkey id="@+id/hotkey_eyedropper" shortcut="I" label="eyedropper"/>
+            <hotkey id="@+id/hotkey_spot_healing_brush" shortcut="J" label="spot healing brush"/>
+            <hotkey id="@+id/hotkey_brush" shortcut="B" label="brush"/>
+            <hotkey id="@+id/hotkey_clone_stamp" shortcut="S" label="clone stamp"/>
+            <hotkey id="@+id/hotkey_history_brush" shortcut="Y" label="history brush"/>
+            <hotkey id="@+id/hotkey_eraser" shortcut="E" label="eraser"/>
+            <hotkey id="@+id/hotkey_gradient" shortcut="G" label="grdient"/>
+            <hotkey id="@+id/hotkey_dodge" shortcut="O" label="dodge"/>
+            <hotkey id="@+id/hotkey_pen" shortcut="P" label="pen"/>
+            <hotkey id="@+id/hotkey_horizontal_type" shortcut="T" label="horizontal type"/>
+            <hotkey id="@+id/hotkey_path_selection" shortcut="A" label="path selection"/>
+            <hotkey id="@+id/hotkey_rectangle" shortcut="U" label="rectangle"/>
+            <hotkey id="@+id/hotkey_object_rotate" shortcut="K" label="object rotate"/>
+            <hotkey id="@+id/hotkey_camera_rotate" shortcut="N" label="camera rotate"/>
+            <hotkey id="@+id/hotkey_rotate_view" shortcut="R" label="rotate view"/>
+            <hotkey id="@+id/hotkey_zoom" shortcut="Z" label="zoom"/>
+            <hotkey id="@+id/hotkey_switch_colors" shortcut="X" label="switch colors"/>
+        </application>
+
+        <!--PowerPoint-->
+        <application id="@+id/pcapp_power_point" name="PowerPoint" procname="POWERPNT.EXE">
+            <hotbtn id="@id/hotbtn_vol_up" shortcut="Right"/>
+            <hotbtn id="@id/hotbtn_vol_down" shortcut="Left"/>
+            <hotkey id="@+id/hotkey_start" shortcut="F5" label="start"/>
+            <hotkey id="@+id/hotkey_prev" shortcut="Left" label="previous slide"/>
+            <hotkey id="@+id/hotkey_next" shortcut="Right" label="next slide"/>
+            <hotkey id="@+id/hotkey_black" shortcut="B" label="black screen"/>
+            <hotkey id="@+id/hotkey_stop" shortcut="Esc" label="stop"/>
+        </application>
+
+        <!--Android Emulator-->
+        <application id="@+id/pcapp_android_emulator" name="Emulator" procname="emulator-arm.exe">
+            <hotkey id="@+id/hotkey_menu" shortcut="F2" label="menu"/>
+            <hotkey id="@+id/hotkey_back" shortcut="Esc" label="back"/>
+            <hotkey id="@+id/hotkey_call" shortcut="F3" label="call"/>
+            <hotkey id="@+id/hotkey_end_call" shortcut="F4" label="hangup"/>
+            <hotkey id="@+id/hotkey_search" shortcut="F5" label="search"/>
+            <hotkey id="@+id/hotkey_power" shortcut="F7" label="power"/>
+            <hotkey id="@+id/hotkey_volume_up" shortcut="Ctrl+F5" label="vol up"/>
+            <hotkey id="@+id/hotkey_volume_down" shortcut="Ctrl+F6" label="vol down"/>
+            <hotkey id="@+id/hotkey_change_orientation" shortcut="Ctrl+F12" label="portrait/\nlandscape"/>
+
+        </application>
+
+    </os>
+</Apps>

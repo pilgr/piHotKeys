@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="donateActivityLabel">Support us</string>
+    <string name="lblDonate">Donate</string>
+    <string name="lblDonateMessage">Your voluntary payment will help us to actively develop piHotKeys. Payment will
+        processed through Android Market. Have a nice time!
+    </string>
+
+    <string name="dialog_rate_app_header">Rate piHotKeys</string>
+    <string name="dialog_rate_app_body">Do you like piHotKeys? Please rate it!</string>
+
+    <string name="menuAbout">About</string>
+
+</resources>
