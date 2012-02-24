@@ -1,18 +1,15 @@
 package name.pilgr.android.picat.fragments;
 
 import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import name.pilgr.android.picat.ConnectivityManager;
+import name.pilgr.android.picat.PiApplication;
 import name.pilgr.android.picat.PiCatActivity;
 import name.pilgr.android.picat.R;
 import name.pilgr.android.picat.model.Application;
-import name.pilgr.android.picat.model.Command;
 import name.pilgr.android.picat.model.Hotkeys;
 import name.pilgr.android.picat.model.Key;
-import name.pilgr.android.picat.utils.Log;
 
 public class HardButtonsController extends Fragment {
 
@@ -23,8 +20,14 @@ public class HardButtonsController extends Fragment {
     public HardButtonsController() {
     }
 
-    public HardButtonsController(ConnectivityManager _connManager, Hotkeys hotkeys_) {
-        this.connManager = _connManager;
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        PiApplication application = (PiApplication) getActivity().getApplication();
+        connManager = application.getConnectivityManager();
+    }
+
+    public HardButtonsController(Hotkeys hotkeys_) {
         this.hotkeys = hotkeys_;
     }
 

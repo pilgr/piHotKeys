@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import name.pilgr.android.picat.ConnectivityManager;
 import name.pilgr.android.picat.HotkeysAdapter;
+import name.pilgr.android.picat.PiApplication;
 import name.pilgr.android.picat.R;
 import name.pilgr.android.picat.model.Application;
 import name.pilgr.android.picat.model.Hotkeys;
@@ -33,9 +34,15 @@ public class GridFragment extends Fragment {
     private ConnectivityManager _connManager;
     private LayoutAnimationController gridAnimation;
 
-    public GridFragment(ConnectivityManager _conManager, Hotkeys hotkeys_) {
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        PiApplication application = (PiApplication) getActivity().getApplication();
+        _connManager = application.getConnectivityManager();
+    }
+
+    public GridFragment(Hotkeys hotkeys_) {
         this.hotkeys = hotkeys_;
-        this._connManager = _conManager;
         this.hotkeysAdapter = new HotkeysAdapter();
     }
 

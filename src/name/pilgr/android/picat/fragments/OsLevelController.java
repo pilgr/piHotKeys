@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.MotionEvent;
 import name.pilgr.android.picat.ConnectivityManager;
+import name.pilgr.android.picat.PiApplication;
 import name.pilgr.android.picat.R;
 import name.pilgr.android.picat.model.Hotkeys;
 import name.pilgr.android.picat.model.Key;
@@ -54,15 +55,16 @@ public class OsLevelController extends Fragment {
         super();
     }
 
-    public OsLevelController(ConnectivityManager _connManager, Hotkeys hotkeys_) {
-        this.connManager = _connManager;
+    public OsLevelController(Hotkeys hotkeys_) {
         this.hotkeys = hotkeys_;
-
     }
+
 
     @Override
     public void onActivityCreated(Bundle b) {
         super.onActivityCreated(b);
+        PiApplication application = (PiApplication) getActivity().getApplication();
+        connManager = application.getConnectivityManager();
     }
 
     public boolean onTouch(MotionEvent ev) {
