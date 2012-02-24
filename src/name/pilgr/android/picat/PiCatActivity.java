@@ -24,15 +24,12 @@ import name.pilgr.android.picat.utils.Log;
 import name.pilgr.android.picat.utils.PrivateKeys;
 import net.robotmedia.billing.BillingController;
 import net.robotmedia.billing.BillingRequest;
-import net.robotmedia.billing.IBillingObserver;
 import net.robotmedia.billing.helper.AbstractBillingObserver;
 import net.robotmedia.billing.model.Transaction;
 
-import java.security.PrivateKey;
-
 //TODO Показывать рефреш-иконку при старте 4-ки
 //TODO Поправить все менюшки
-public class PiCatActivity extends ActionBarActivity {
+public class PiCatActivity extends ActionBarActivity implements OnActionPerformedListener {
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private PowerManager.WakeLock wakeLock;
@@ -48,6 +45,8 @@ public class PiCatActivity extends ActionBarActivity {
     private ConnectivityManager connManager;
     private PinInputFragment pinFragment;
     private String prevProcName = "";
+    private static final String FRAGMENT_PIN = "pin";
+    private static final String FRAGMENT_GRID = "grid";
 
     public static final int DIALOG_RATE_APP = 2;
 
@@ -78,12 +77,13 @@ public class PiCatActivity extends ActionBarActivity {
         } catch (Exception e) {
             Log.e(e.toString());
         }
-        touchController = new OsLevelController(connManager, hotkeys);
-        hardButtonsController = new HardButtonsController(connManager, hotkeys);
-        gridFragment = new GridFragment(connManager, hotkeys);
+        // Init needed fragments
+        touchController = new OsLevelController(hotkeys);
+        hardButtonsController = new HardButtonsController(hotkeys);
+        gridFragment = new GridFragment(hotkeys);
         connectionFragment = new ConnectionFragment();
-        pinFragment = new PinInputFragment(connManager);
-        connectionController = new ConnectionController(connManager, connectionFragment, gridFragment, pinFragment);
+        pinFragment = new PinInputFragment();
+        connectionController = new ConnectionController();
 
         //Add invisible fragments - controllers
         fragmentManager.beginTransaction().
@@ -122,8 +122,9 @@ public class PiCatActivity extends ActionBarActivity {
             accountName = "Unnamed";
             accountType = "Unnamed";
         }
-
         connManager = new ConnectivityManager(accountName, accountType);
+        piApplication application = (piApplication) getApplication();
+        application.setConnectivityManager(connManager);
     }
 
     @Override
@@ -178,8 +179,6 @@ public class PiCatActivity extends ActionBarActivity {
     private void processWindowChange(String procName) {
         Log.d("Active window changed to: " + procName);
         Analytics.trackReducedProcName(procName);
-
-
         //Are really active pc app has been changed?
         if (reallyProcNameChanged(procName)) {
             //If active pc app supported
@@ -187,7 +186,6 @@ public class PiCatActivity extends ActionBarActivity {
                 //activeApp can be null. In this case PC app not supported;
                 Application activeApp = hotkeys.getActiveApp();
                 if (gridFragment != null) gridFragment.setActiveApp(activeApp);
-
                 CharSequence appName = activeApp == null ? "" : activeApp.name;
                 setTitle(appName);
                 Analytics.trackSupportedApp(appName.toString());
@@ -309,9 +307,9 @@ public class PiCatActivity extends ActionBarActivity {
      * Hide donation icon if user donate us some money
      */
     private void hideDonateIconIfAlreadyDonated() {
-        boolean purchased1 = BillingController.isPurchased(this, name.pilgr.android.picat.Application.ITEM_ID_DONATE_1);
-        boolean purchased3 = BillingController.isPurchased(this, name.pilgr.android.picat.Application.ITEM_ID_DONATE_3);
-        boolean purchased5 = BillingController.isPurchased(this, name.pilgr.android.picat.Application.ITEM_ID_DONATE_5);
+        boolean purchased1 = BillingController.isPurchased(this, piApplication.ITEM_ID_DONATE_1);
+        boolean purchased3 = BillingController.isPurchased(this, piApplication.ITEM_ID_DONATE_3);
+        boolean purchased5 = BillingController.isPurchased(this, piApplication.ITEM_ID_DONATE_5);
         if (purchased1 || purchased3 || purchased5) {
             getActionBarHelper().hideActionItem(R.id.menu_donate, true);
         }
@@ -369,6 +367,41 @@ public class PiCatActivity extends ActionBarActivity {
                 return builder.create();
             default:
                 return null;
+        }
+    }
+
+    @Override
+    public void onPinInserted(boolean flag) {
+        if (flag) {
+            fragmentManager.beginTransaction().replace(R.id.pad, pinFragment, FRAGMENT_PIN).commit();
+            Log.d("NEW_CODE ---------------------------------------> PIN CORRECT!");
+        } else {
+            pinFragment.incorrectPin();
+            Log.d("NEW_CODE ---------------------------------------> PIN INCORRECT!");
+        }
+    }
+
+    private static final String FRAGMENT_CONNECTION = "connection_in_progress";
+
+    @Override
+    public void onConnectionAbsence() {
+        fragmentManager.beginTransaction().replace(R.id.pad, connectionFragment, FRAGMENT_CONNECTION).commitAllowingStateLoss();
+        Log.d("NEW_CODE ---------------------------------------> onConnectionAbsence!");
+    }
+
+    @Override
+    public void onConnected() {
+        //Replace by real grid fragment
+        if (fragmentManager.findFragmentByTag(FRAGMENT_GRID) == null) {
+            fragmentManager.beginTransaction().replace(R.id.pad, gridFragment, FRAGMENT_GRID).commitAllowingStateLoss();
+        }
+    }
+
+    @Override
+    public void onDisconnect() {
+        //Replace by real grid fragment
+        if (fragmentManager.findFragmentByTag(FRAGMENT_CONNECTION) == null) {
+            fragmentManager.beginTransaction().replace(R.id.pad, connectionFragment, FRAGMENT_CONNECTION).commitAllowingStateLoss();
         }
     }
 }

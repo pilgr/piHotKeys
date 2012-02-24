@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import name.pilgr.android.picat.ConnectivityManager;
 import name.pilgr.android.picat.R;
+import name.pilgr.android.picat.piApplication;
 
 /**
  * Created by IntelliJ IDEA.
@@ -25,8 +26,11 @@ public class PinInputFragment extends Fragment {
     private Button btnEnterPin;
     private EditText edtPinValue;
 
-    public PinInputFragment(ConnectivityManager conMngr) {
-        connectivityManager = conMngr;
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        piApplication application = (piApplication) getActivity().getApplication();
+        connectivityManager = application.getConnectivityManager();
     }
 
     @Override

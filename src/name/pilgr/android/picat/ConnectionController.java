@@ -1,5 +1,6 @@
 package name.pilgr.android.picat;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 import name.pilgr.android.picat.actionbar.ActionBarHelper;
 import name.pilgr.android.picat.fragments.ConnectionFragment;
+import name.pilgr.android.picat.fragments.OnActionPerformedListener;
 import name.pilgr.android.picat.fragments.PinInputFragment;
 import name.pilgr.android.picat.utils.Analytics;
 import name.pilgr.android.picat.utils.Log;
@@ -22,32 +24,18 @@ public class ConnectionController extends Fragment {
     private FragmentManager fragmentManager;
 
     private static final long CONNECTION_TIMEOUT_IN_S = 300;
-
-    private static final String FRAGMENT_GRID = "grid";
     private static final String FRAGMENT_CONNECTION = "connection_in_progress";
-    private static final String FRAGMENT_PIN = "pin";
 
     private ConnectivityManager connManager;
-    private Fragment gridFragment;
-    private ConnectionFragment connectionFragment;
-    private TextView lblStatus;
     private boolean isDestroying = false;
-    private PinInputFragment pinFragment;
-
-    public ConnectionController(ConnectivityManager _connManager, ConnectionFragment connectionFragment_, Fragment gridFragment_, PinInputFragment pinFragment_) {
-        this.connManager = _connManager;
-        this.connectionFragment = connectionFragment_;
-        this.gridFragment = gridFragment_;
-        this.pinFragment = pinFragment_;
-    }
-
-    public ConnectionController() {
-    }
+    private OnActionPerformedListener actionPerformedListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fragmentManager = getActivity().getSupportFragmentManager();
+        piApplication application = (piApplication) getActivity().getApplication();
+        connManager = application.getConnectivityManager();
         connManager.activate();
 
         connManager.setOnConnectionChangeListener(new ConnectivityManager.OnConnectionChangeListener() {
@@ -64,13 +52,11 @@ public class ConnectionController extends Fragment {
             }
 
             public void onPinFailed() {
-                pinFragment.incorrectPin();
+                actionPerformedListener.onPinInserted(false);
             }
 
             public void onEnterPin() {
-                fragmentManager.beginTransaction().
-                        replace(R.id.pad, pinFragment, FRAGMENT_PIN).
-                        commit();
+                actionPerformedListener.onPinInserted(true);
             }
         });
 
@@ -78,9 +64,7 @@ public class ConnectionController extends Fragment {
 
         //Add temporary connection fragment
         if (fragmentManager.findFragmentByTag(FRAGMENT_CONNECTION) == null) {
-            fragmentManager.beginTransaction().
-                    replace(R.id.pad, connectionFragment, FRAGMENT_CONNECTION).
-                    commitAllowingStateLoss();
+            actionPerformedListener.onConnectionAbsence();
         }
     }
 
@@ -94,13 +78,7 @@ public class ConnectionController extends Fragment {
         } else {
             ((ActionBarActivity) getActivity()).getActionBarHelper().setRefreshActionIcon(R.drawable.action_wifi);
         }
-
-        //Replace by real grid fragment
-        if (fragmentManager.findFragmentByTag(FRAGMENT_GRID) == null) {
-            fragmentManager.beginTransaction().
-                    replace(R.id.pad, gridFragment, FRAGMENT_GRID).
-                    commitAllowingStateLoss();
-        }
+        actionPerformedListener.onConnected();
         showRateDialogIfNeeded();
         Analytics.trackConnected(conType);
     }
@@ -123,14 +101,8 @@ public class ConnectionController extends Fragment {
     private void onDisconnected() {
         Log.d("onDisconnected");
         if (isDestroying) return;
-
         abReset();
-        //Replace by real grid fragment
-        if (fragmentManager.findFragmentByTag(FRAGMENT_CONNECTION) == null) {
-            fragmentManager.beginTransaction().
-                    replace(R.id.pad, connectionFragment, FRAGMENT_CONNECTION).
-                    commitAllowingStateLoss();
-        }
+        actionPerformedListener.onDisconnect();
     }
 
     @Override
@@ -154,7 +126,6 @@ public class ConnectionController extends Fragment {
 
     private void abReset() {
         getActivity().setTitle(getResources().getString(R.string.app_name));
-
         abSetRefresh(true);
     }
 
@@ -175,5 +146,13 @@ public class ConnectionController extends Fragment {
         pref.edit().putInt(CONNECTION_COUNTER, connCounter + 1).commit();
     }
 
-
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            actionPerformedListener = (OnActionPerformedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implemented OnActionPerformedListener");
+        }
+    }
 }

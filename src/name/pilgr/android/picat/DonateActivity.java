@@ -141,7 +141,7 @@ public class DonateActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 Analytics.trackClickDonateButton("$1");
-                BillingController.requestPurchase(DonateActivity.this, Application.ITEM_ID_DONATE_1, true /* confirm */);
+                BillingController.requestPurchase(DonateActivity.this, piApplication.ITEM_ID_DONATE_1, true /* confirm */);
             }
         });
 
@@ -149,7 +149,7 @@ public class DonateActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 Analytics.trackClickDonateButton("$3");
-                BillingController.requestPurchase(DonateActivity.this, Application.ITEM_ID_DONATE_3, true /* confirm */);
+                BillingController.requestPurchase(DonateActivity.this, piApplication.ITEM_ID_DONATE_3, true /* confirm */);
             }
         });
 
@@ -157,7 +157,7 @@ public class DonateActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 Analytics.trackClickDonateButton("$5");
-                BillingController.requestPurchase(DonateActivity.this, Application.ITEM_ID_DONATE_5, true /* confirm */);
+                BillingController.requestPurchase(DonateActivity.this, piApplication.ITEM_ID_DONATE_5, true /* confirm */);
             }
         });
     }
