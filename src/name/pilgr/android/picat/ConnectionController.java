@@ -1,22 +1,13 @@
 package name.pilgr.android.picat;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
-import android.widget.TextView;
 import name.pilgr.android.picat.actionbar.ActionBarHelper;
-import name.pilgr.android.picat.fragments.ConnectionFragment;
-import name.pilgr.android.picat.fragments.OnActionPerformedListener;
-import name.pilgr.android.picat.fragments.PinInputFragment;
+import name.pilgr.android.picat.fragments.OnConnectionActionPerformedListener;
 import name.pilgr.android.picat.utils.Analytics;
 import name.pilgr.android.picat.utils.Log;
 
@@ -28,13 +19,13 @@ public class ConnectionController extends Fragment {
 
     private ConnectivityManager connManager;
     private boolean isDestroying = false;
-    private OnActionPerformedListener actionPerformedListener;
+    private OnConnectionActionPerformedListener actionPerformedListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fragmentManager = getActivity().getSupportFragmentManager();
-        piApplication application = (piApplication) getActivity().getApplication();
+        PiApplication2 application = (PiApplication2) getActivity().getApplication();
         connManager = application.getConnectivityManager();
         connManager.activate();
 
@@ -150,9 +141,9 @@ public class ConnectionController extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            actionPerformedListener = (OnActionPerformedListener) activity;
+            actionPerformedListener = (OnConnectionActionPerformedListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implemented OnActionPerformedListener");
+            throw new ClassCastException(activity.toString() + " must implemented OnConnectionActionPerformedListener");
         }
     }
 }

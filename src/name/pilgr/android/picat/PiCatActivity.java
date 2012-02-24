@@ -29,7 +29,7 @@ import net.robotmedia.billing.model.Transaction;
 
 //TODO Показывать рефреш-иконку при старте 4-ки
 //TODO Поправить все менюшки
-public class PiCatActivity extends ActionBarActivity implements OnActionPerformedListener {
+public class PiCatActivity extends ActionBarActivity implements OnConnectionActionPerformedListener {
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private PowerManager.WakeLock wakeLock;
@@ -123,7 +123,7 @@ public class PiCatActivity extends ActionBarActivity implements OnActionPerforme
             accountType = "Unnamed";
         }
         connManager = new ConnectivityManager(accountName, accountType);
-        piApplication application = (piApplication) getApplication();
+        PiApplication2 application = (PiApplication2) getApplication();
         application.setConnectivityManager(connManager);
     }
 
@@ -307,9 +307,9 @@ public class PiCatActivity extends ActionBarActivity implements OnActionPerforme
      * Hide donation icon if user donate us some money
      */
     private void hideDonateIconIfAlreadyDonated() {
-        boolean purchased1 = BillingController.isPurchased(this, piApplication.ITEM_ID_DONATE_1);
-        boolean purchased3 = BillingController.isPurchased(this, piApplication.ITEM_ID_DONATE_3);
-        boolean purchased5 = BillingController.isPurchased(this, piApplication.ITEM_ID_DONATE_5);
+        boolean purchased1 = BillingController.isPurchased(this, PiApplication2.ITEM_ID_DONATE_1);
+        boolean purchased3 = BillingController.isPurchased(this, PiApplication2.ITEM_ID_DONATE_3);
+        boolean purchased5 = BillingController.isPurchased(this, PiApplication2.ITEM_ID_DONATE_5);
         if (purchased1 || purchased3 || purchased5) {
             getActionBarHelper().hideActionItem(R.id.menu_donate, true);
         }

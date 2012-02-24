@@ -67,7 +67,7 @@ public class Hotkeys {
                     key.id = xrp.getIdAttributeResourceValue(0);
                     key.shortcut = xrp.getAttributeValue(null, "shortcut");
                     key.label = xrp.getAttributeValue(null, "label");
-                    // piApplication shortcut
+                    // PiApplication2 shortcut
                     if (app != null) {
                         app.keys.add(key);
                         // OS specific shortcut
