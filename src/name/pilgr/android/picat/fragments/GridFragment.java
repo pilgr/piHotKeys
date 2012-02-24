@@ -11,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import name.pilgr.android.picat.ConnectivityManager;
 import name.pilgr.android.picat.HotkeysAdapter;
-import name.pilgr.android.picat.PiApplication2;
+import name.pilgr.android.picat.PiApplication;
 import name.pilgr.android.picat.R;
 import name.pilgr.android.picat.model.Application;
 import name.pilgr.android.picat.model.Hotkeys;
@@ -37,7 +37,7 @@ public class GridFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        PiApplication2 application = (PiApplication2) getActivity().getApplication();
+        PiApplication application = (PiApplication) getActivity().getApplication();
         _connManager = application.getConnectivityManager();
     }
 

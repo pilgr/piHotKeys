@@ -123,7 +123,7 @@ public class PiCatActivity extends ActionBarActivity implements OnConnectionActi
             accountType = "Unnamed";
         }
         connManager = new ConnectivityManager(accountName, accountType);
-        PiApplication2 application = (PiApplication2) getApplication();
+        PiApplication application = (PiApplication) getApplication();
         application.setConnectivityManager(connManager);
     }
 
@@ -307,9 +307,9 @@ public class PiCatActivity extends ActionBarActivity implements OnConnectionActi
      * Hide donation icon if user donate us some money
      */
     private void hideDonateIconIfAlreadyDonated() {
-        boolean purchased1 = BillingController.isPurchased(this, PiApplication2.ITEM_ID_DONATE_1);
-        boolean purchased3 = BillingController.isPurchased(this, PiApplication2.ITEM_ID_DONATE_3);
-        boolean purchased5 = BillingController.isPurchased(this, PiApplication2.ITEM_ID_DONATE_5);
+        boolean purchased1 = BillingController.isPurchased(this, PiApplication.ITEM_ID_DONATE_1);
+        boolean purchased3 = BillingController.isPurchased(this, PiApplication.ITEM_ID_DONATE_3);
+        boolean purchased5 = BillingController.isPurchased(this, PiApplication.ITEM_ID_DONATE_5);
         if (purchased1 || purchased3 || purchased5) {
             getActionBarHelper().hideActionItem(R.id.menu_donate, true);
         }

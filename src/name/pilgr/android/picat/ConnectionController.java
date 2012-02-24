@@ -25,7 +25,7 @@ public class ConnectionController extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fragmentManager = getActivity().getSupportFragmentManager();
-        PiApplication2 application = (PiApplication2) getActivity().getApplication();
+        PiApplication application = (PiApplication) getActivity().getApplication();
         connManager = application.getConnectivityManager();
         connManager.activate();
 

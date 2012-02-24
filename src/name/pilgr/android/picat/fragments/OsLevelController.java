@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.MotionEvent;
 import name.pilgr.android.picat.ConnectivityManager;
-import name.pilgr.android.picat.PiApplication2;
+import name.pilgr.android.picat.PiApplication;
 import name.pilgr.android.picat.R;
 import name.pilgr.android.picat.model.Hotkeys;
 import name.pilgr.android.picat.model.Key;
@@ -63,7 +63,7 @@ public class OsLevelController extends Fragment {
     @Override
     public void onActivityCreated(Bundle b) {
         super.onActivityCreated(b);
-        PiApplication2 application = (PiApplication2) getActivity().getApplication();
+        PiApplication application = (PiApplication) getActivity().getApplication();
         connManager = application.getConnectivityManager();
     }
 

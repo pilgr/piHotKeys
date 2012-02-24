@@ -3,7 +3,7 @@ package name.pilgr.android.picat;
 import name.pilgr.android.picat.utils.PrivateKeys;
 import net.robotmedia.billing.BillingController;
 
-public class PiApplication2 extends android.app.Application {
+public class PiApplication extends android.app.Application {
     public final static String ITEM_ID_DONATE_1 = "name.pilgr.android.picat.donate1";
     public final static String ITEM_ID_DONATE_3 = "name.pilgr.android.picat.donate3";
     public final static String ITEM_ID_DONATE_5 = "name.pilgr.android.picat.donate5";
