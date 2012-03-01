@@ -40,6 +40,12 @@ public class OsLevelController extends Fragment {
     private long f0UpTime;
     private static final long MAX_FINGER_DIF_TIME = 100;
 
+    private static final String OSKEY_ALTTAB = "alttab";
+    private static final String OSKEY_SWITCH_WINDOW_START = "wintab";
+    private static final String OSKEY_SWITCH_WINDOW_NEXT = "tab";
+    private static final String OSKEY_SWITCH_WINDOW_PREV = "shifttab";
+    private static final String OSKEY_SWITCH_WINDOW_FINISH = "win";
+
     private enum Mode {
         VERTICAL_SCROLL, SWITCH_WINDOW, ENTER, FAIL, NONE
     }
@@ -124,17 +130,17 @@ public class OsLevelController extends Fragment {
             float touchX = ev.getX(upPid == 0 ? 1 : 0);
             //Log.d("upX= " + upX + "touchX= " + touchX);
             if (mode != Mode.SWITCH_WINDOW) {
-                sendKey(R.id.oskey_switch_window_start);
+                sendKey(OSKEY_SWITCH_WINDOW_START);
             } else if (upX > touchX) {
-                sendKey(R.id.oskey_switch_window_next);
+                sendKey(OSKEY_SWITCH_WINDOW_NEXT);
             } else {
-                sendKey(R.id.oskey_switch_window_prev);
+                sendKey(OSKEY_SWITCH_WINDOW_PREV);
             }
             mode = Mode.SWITCH_WINDOW;
         }
 
         if (actionCode == MotionEvent.ACTION_UP && mode == Mode.SWITCH_WINDOW) {
-            sendKey(R.id.oskey_switch_window_finish);
+            sendKey(OSKEY_SWITCH_WINDOW_FINISH);
         }
 
         //If double-finger tap - send ENTER
@@ -171,7 +177,7 @@ public class OsLevelController extends Fragment {
         }
 
         if (Math.abs(xTotal) < DISABLE_AREA_SIZE / 2 && isScrollProcessing) {
-            keySendEngine.setKeyAndSpeed(R.id.oskey_switch_window_prev, 0);
+            keySendEngine.setKeyAndSpeed(OSKEY_SWITCH_WINDOW_PREV, 0);
             Log.d("set zero speed");
             return true;
         }
@@ -185,9 +191,9 @@ public class OsLevelController extends Fragment {
         double speed = (total - DISABLE_AREA_SIZE / 2) / SPEED_MULTIPLICATOR + 0.5;
         Log.d("Current speed =" + speed);
         if (xTotal < 0) {
-            keySendEngine.setKeyAndSpeed(R.id.oskey_switch_window_prev, speed);
+            keySendEngine.setKeyAndSpeed(OSKEY_SWITCH_WINDOW_PREV, speed);
         } else {
-            keySendEngine.setKeyAndSpeed(R.id.oskey_switch_window_next, speed);
+            keySendEngine.setKeyAndSpeed(OSKEY_SWITCH_WINDOW_NEXT, speed);
         }
 
         return true;
@@ -198,12 +204,12 @@ public class OsLevelController extends Fragment {
         isScrollProcessing = true;
         Log.d("First processed scroll event");
 
-        sendKey(R.id.oskey_switch_window_start);
+        sendKey(OSKEY_SWITCH_WINDOW_START);
         keySendEngine = new KeySendEngine();
         keySendEngine.start();
     }
 
-    private void sendKey(int id) {
+    private void sendKey(String id) {
         Key key = hotkeys.oskeys.get(id);
         if (key != null) {
             EventSequence msg = key.getEventSequence();
@@ -214,10 +220,10 @@ public class OsLevelController extends Fragment {
     private class KeySendEngine extends Thread {
         //How much key will be sent per second
         double speed = 0;
-        int keyId = 0;
+        String keyId = "";
         private boolean stopNow = false;
 
-        public void setKeyAndSpeed(int keyId_, double speed_) {
+        public void setKeyAndSpeed(String keyId_, double speed_) {
             speed = speed_;
             keyId = keyId_;
         }

@@ -6,8 +6,10 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.PowerManager;
 import android.support.v4.app.FragmentManager;
 import android.text.SpannableString;
@@ -26,6 +28,8 @@ import net.robotmedia.billing.BillingController;
 import net.robotmedia.billing.BillingRequest;
 import net.robotmedia.billing.helper.AbstractBillingObserver;
 import net.robotmedia.billing.model.Transaction;
+
+import java.io.*;
 
 //TODO Показывать рефреш-иконку при старте 4-ки
 //TODO Поправить все менюшки
@@ -60,6 +64,7 @@ public class PiCatActivity extends ActionBarActivity implements OnConnectionActi
         BugSenseHandler.setup(this, PrivateKeys.BUGSENSE_API_KEY);
 
         //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        // Creating hotkeys.xml on SD Card
         setContentView(R.layout.main);
 
         //Keep screen on
@@ -73,7 +78,7 @@ public class PiCatActivity extends ActionBarActivity implements OnConnectionActi
 
         //Load hotkeys configuration from XML
         try {
-            hotkeys = new Hotkeys(this, R.xml.hotkeys);
+            hotkeys = new Hotkeys(this);
         } catch (Exception e) {
             Log.e(e.toString());
         }
@@ -374,10 +379,8 @@ public class PiCatActivity extends ActionBarActivity implements OnConnectionActi
     public void onPinInserted(boolean flag) {
         if (flag) {
             fragmentManager.beginTransaction().replace(R.id.pad, pinFragment, FRAGMENT_PIN).commit();
-            Log.d("NEW_CODE ---------------------------------------> PIN CORRECT!");
         } else {
             pinFragment.incorrectPin();
-            Log.d("NEW_CODE ---------------------------------------> PIN INCORRECT!");
         }
     }
 
@@ -386,7 +389,6 @@ public class PiCatActivity extends ActionBarActivity implements OnConnectionActi
     @Override
     public void onConnectionAbsence() {
         fragmentManager.beginTransaction().replace(R.id.pad, connectionFragment, FRAGMENT_CONNECTION).commitAllowingStateLoss();
-        Log.d("NEW_CODE ---------------------------------------> onConnectionAbsence!");
     }
 
     @Override

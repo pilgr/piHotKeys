@@ -1,12 +1,21 @@
 package name.pilgr.android.picat.model;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.content.res.XmlResourceParser;
+import android.os.Environment;
+import android.widget.Toast;
+import name.pilgr.android.picat.utils.HotKeysHandler;
 import name.pilgr.android.picat.utils.Log;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-import java.io.IOException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,77 +31,45 @@ public class Hotkeys {
     private List<Application> apps = new ArrayList<Application>();
     private boolean initialized = false;
     private Application activeApp = null;
-    public HashMap<Integer, Key> oskeys = new HashMap<Integer, Key>();
-    public HashMap<Integer, Command> oscommands = new HashMap<Integer, Command>();
+    public HashMap<String, Key> oskeys = new HashMap<String, Key>();
+    public HashMap<String, Command> oscommands = new HashMap<String, Command>();
+    private Context context;
+    private final String PATH_TO_FILE = "/Android/data/name.pilgr.android.picat";
+    private final String FILE_NAME = "hotkeys.xml";
 
-    public Hotkeys(Context ctx, int xmlResourceId) throws IOException, XmlPullParserException {
-        XmlResourceParser xrp = ctx.getResources().getXml(xmlResourceId);
-        initFromXml(xrp);
+    public Hotkeys(Context ctx) {
+        context = ctx;
+        InputStream currentStream = null;
+        File hotKeys = new File(Environment.getExternalStorageDirectory() + PATH_TO_FILE + "/" + FILE_NAME);
+        if (hotKeys.exists()) {
+            try {
+                currentStream = new FileInputStream(hotKeys);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            currentStream = getInputStreamFromAssets();
+            createFileOnSDCard();
+        }
+        initHotKeys(currentStream);
     }
 
-    private void initFromXml(XmlResourceParser xrp) throws XmlPullParserException,
-            IOException {
-        if (xrp == null) return;
-
-        xrp.next();
-        int eventType = xrp.getEventType();
-        //by the all document
-        Application app = null;
-        while (eventType != XmlPullParser.END_DOCUMENT) {
-            // application tag
-            if (eventType == XmlPullParser.START_TAG
-                    && xrp.getName().equalsIgnoreCase("application")) {
-                // If current tag correspond to active mobile operator
-                app = new Application();
-                app.id = xrp.getIdAttributeResourceValue(0);
-                app.name = xrp.getAttributeValue(null, "name");
-                app.procname = xrp.getAttributeValue(null, "procname");
-
-                if (app.name == null) {
-                    Log.e("[hotkeys.xml] Tag 'name' not specified for app id " + app.id);
-                    app.name = "";
-                }
-                if (app.procname == null) {
-                    Log.e("[hotkeys.xml] Tag 'procname' not specified for app id " + app.id);
-                    app.procname = "";
-                }
-
-                apps.add(app);
-            }
-            //hotkey tag
-            if (eventType == XmlPullParser.START_TAG) {
-                if (xrp.getName().equalsIgnoreCase("hotkey")) {
-                    //
-                    Key key = new Key();
-                    key.id = xrp.getIdAttributeResourceValue(0);
-                    key.shortcut = xrp.getAttributeValue(null, "shortcut");
-                    key.label = xrp.getAttributeValue(null, "label");
-                    // PiApplication shortcut
-                    if (app != null) {
-                        app.keys.add(key);
-                        // OS specific shortcut
-                    } else {
-                        oskeys.put(key.id, key);
-                    }
-                } else if (xrp.getName().equalsIgnoreCase("command")) {
-                    //
-                    Command cmd = new Command(xrp.getAttributeValue(null, "text"));
-                    oscommands.put(xrp.getIdAttributeResourceValue(0), cmd);
-                }
-                //hotkeys for hardware buttons
-                else if (xrp.getName().equalsIgnoreCase("hotbtn")) {
-                    Key key = new Key();
-                    key.id = xrp.getIdAttributeResourceValue(0);
-                    key.shortcut = xrp.getAttributeValue(null, "shortcut");
-                    key.label = xrp.getAttributeValue(null, "hardware button");
-                    if (app != null) {
-                        app.buttons.put(key.id, key);
-                    }
-                }
-            }
-            eventType = xrp.next();
+    private void initHotKeys(InputStream currentStream) {
+        SAXParser parser = initSaxParser();
+        HotKeysHandler handler = new HotKeysHandler(context);
+        try {
+            parser.parse(currentStream, handler);
+            apps = handler.getApps();
+            oskeys = handler.getOsKeys();
+            oscommands = handler.getOsCommands();
+            initialized = true;
+        } catch (FileNotFoundException e) {
+            Log.e("File not found", e);
+        } catch (SAXException e) {
+            Log.e("Incorrect XML file", e);
+        } catch (IOException e) {
+            Log.e("Can't read file from SD card", e);
         }
-        initialized = true;
     }
 
     public boolean isInitialized() {
@@ -124,5 +101,80 @@ public class Hotkeys {
         activeApp = foundApp;
 
         return foundApp != null;
+    }
+
+    /**
+     * Gets data from assets folder
+     *
+     * @return - byte buffer with data
+     */
+    private byte[] getDataFromAssets() {
+        try {
+            InputStream input = getInputStreamFromAssets();
+            int size = input.available();
+            byte[] buffer = new byte[size];
+            input.read(buffer);
+            input.close();
+            return buffer;
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(context, "Can't read settings file from SD Card", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+    }
+
+    /**
+     * Get InputStream from assets file
+     *
+     * @return - input stream
+     */
+    private InputStream getInputStreamFromAssets() {
+        AssetManager assetManager = context.getAssets();
+        try {
+            InputStream input = assetManager.open("hotkeys.xml");
+            return input;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private String pathToFile = null;
+
+    /**
+     * Create file on SD Card
+     */
+    private void createFileOnSDCard() {
+        try {
+            File packageName = new File(Environment.getExternalStorageDirectory() + PATH_TO_FILE);
+            if (!packageName.exists()) {
+                packageName.mkdirs();
+            }
+            File hotKeys = new File(packageName.getAbsolutePath() + "/" + FILE_NAME);
+            if (!hotKeys.exists()) {
+                hotKeys.createNewFile();
+                FileOutputStream outputStream = new FileOutputStream(hotKeys);
+                outputStream.write(getDataFromAssets());
+                outputStream.flush();
+                outputStream.close();
+                pathToFile = hotKeys.getAbsolutePath();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private SAXParser initSaxParser() {
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        try {
+            return factory.newSAXParser();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

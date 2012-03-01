@@ -43,7 +43,7 @@ public class HotkeysAdapter extends BaseAdapter {
     public long getItemId(int i) {
         if (app == null) return 0;
         try {
-            return app.keys.get(i).id;
+            return /*app.keys.get(i).id;*/ i;
         } catch (IndexOutOfBoundsException e) {
             return 0;
         }
