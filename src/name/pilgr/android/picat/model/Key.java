@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
  * To change this template use File | Settings | File Templates.
  */
 public class Key {
-    public int id = 0;
+    public String id = "";
     public String shortcut = "";
     public int imageResourceId = 0;
     public String label = "";

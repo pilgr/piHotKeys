@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Apps>
+    <os name="windows">
+
+        <!--Windows-->
+        <hotkey id="alttab" shortcut="Alt+Tab"/>
+        <hotkey id="wintab" shortcut="$Win+Tab+$100"/>
+        <hotkey id="tab" shortcut="Tab"/>
+        <hotkey id="shifttab" shortcut="Shift+Tab"/>
+        <hotkey id="win" shortcut="Win$"/>
+        <!--<hotkey  shortcut="$Alt+Tab+$100"/>
+        <hotkey  shortcut="Tab"/>
+        <hotkey  shortcut="Shift+Tab"/>
+        <hotkey  shortcut="Alt$"/>-->
+
+        <command text="rundll32.exe user32.dll, LockWorkStation "/>
+
+        <!--EXPLORER.EXE-->
+        <application name="Windows" procname="EXPLORER.EXE">
+        </application>
+
+        <!--IDEA-->
+        <application name="IntelliJ IDEA" procname="idea.exe">
+            <hotbtn shortcut="Ctrl+Alt+Right"/>
+            <hotbtn shortcut="Ctrl+Alt+Left"/>
+            <hotkey shortcut="Shift+F10" label="run"/>
+            <hotkey shortcut="Shift+F9" label="debug"/>
+            <hotkey shortcut="Ctrl+Shift+N" label="to file"/>
+            <hotkey shortcut="Ctrl+K" label="commit"/>
+            <hotkey shortcut="Ctrl+T" label="update"/>
+            <hotkey shortcut="Ctrl+Alt+Shift+S" label="project\nstructure"/>
+            <hotkey shortcut="Ctrl+F12" label="structure\npopup"/>
+            <hotkey shortcut="Alt+F7" label="find\nusages"/>
+            <hotkey shortcut="Ctrl+Shift+F12" label="hide/show\nwindows"/>
+            <hotkey shortcut="Ctrl+F4" label="close"/>
+        </application>
+
+        <!--Eclipse-->
+        <application name="Eclipse" procname="eclipse.exe">
+            <hotkey shortcut="Ctrl+F11" label="run"/>
+            <hotkey shortcut="F11" label="debug"/>
+            <hotkey shortcut="Ctrl+Shift+R" label="open resource"/>
+            <hotkey shortcut="Ctrl+Shift+T" label="open type"/>
+            <hotkey shortcut="Ctrl+O" label="quick outline"/>
+            <hotkey shortcut="Ctrl+E" label="to editors"/>
+            <hotkey shortcut="Ctrl+F4" label="close"/>
+        </application>
+
+        <!--Chrome-->
+        <application name="Google Chrome" procname="chrome.exe">
+            <hotbtn shortcut="Ctrl+Tab"/>
+            <hotbtn shortcut="Ctrl+Shift+Tab"/>
+            <hotkey shortcut="Ctrl+L" label="address\nbar"/>
+            <hotkey shortcut="Ctrl+Shift+Tab" label="previous\ntab"/>
+            <hotkey shortcut="Ctrl+Tab" label="next\ntab"/>
+            <hotkey shortcut="Ctrl+T" label="new\ntab"/>
+            <hotkey shortcut="Ctrl+F4" label="close\ntab"/>
+            <hotkey shortcut="Ctrl+Shift+T" label="open\nclosed tab"/>
+            <hotkey shortcut="Ctrl+H" label="history"/>
+            <hotkey shortcut="Ctrl+J" label="downloads"/>
+            <hotkey shortcut="Ctrl+D" label="to favorites"/>
+        </application>
+
+        <!--Firefox-->
+        <application name="Mozilla Firefox" procname="firefox.exe">
+            <hotbtn shortcut="Ctrl+Tab"/>
+            <hotbtn shortcut="Ctrl+Shift+Tab"/>
+            <hotkey shortcut="Ctrl+L" label="address\nbar"/>
+            <hotkey shortcut="Ctrl+Shift+Tab" label="previous\ntab"/>
+            <hotkey shortcut="Ctrl+Tab" label="next\ntab"/>
+            <hotkey shortcut="Ctrl+T" label="new\ntab"/>
+            <hotkey shortcut="Ctrl+F4" label="close\ntab"/>
+            <hotkey shortcut="Ctrl+H" label="history"/>
+            <hotkey shortcut="Ctrl+J" label="downloads"/>
+            <hotkey shortcut="Ctrl+D" label="to favorites"/>
+            <hotkey shortcut="Ctrl+I" label="open\nfavorites"/>
+        </application>
+
+        <!--IE-->
+        <application name="Internet Explorer" procname="iexplore.exe">
+            <hotbtn shortcut="Ctrl+Tab"/>
+            <hotbtn shortcut="Ctrl+Shift+Tab"/>
+            <hotkey shortcut="Ctrl+L" label="address\nbar"/>
+            <hotkey shortcut="Ctrl+Shift+Tab" label="previous\ntab"/>
+            <hotkey shortcut="Ctrl+Tab" label="next\ntab"/>
+            <hotkey shortcut="Ctrl+T" label="new\ntab"/>
+            <hotkey shortcut="Ctrl+F4" label="close\ntab"/>
+            <hotkey shortcut="Ctrl+H" label="history"/>
+            <hotkey shortcut="Ctrl+J" label="downloads"/>
+            <hotkey shortcut="Ctrl+D" label="to favorites"/>
+            <hotkey shortcut="Ctrl+I" label="open\nfavorites"/>
+        </application>
+
+        <!--Skype-->
+        <application name="Skype" procname="skype.exe">
+            <hotbtn shortcut="Up"/>
+            <hotbtn shortcut="Down"/>
+            <hotkey shortcut="Alt+1" label="contacts"/>
+            <hotkey shortcut="Alt+2" label="recent"/>
+        </application>
+
+        <!--VLC-->
+        <application name="VLC" procname="vlc.exe">
+            <hotbtn shortcut="Ctrl+Up"/>
+            <hotbtn shortcut="Ctrl+Down"/>
+            <hotkey shortcut="P" label="previous"/>
+            <hotkey shortcut="Space" label="play/pause"/>
+            <hotkey shortcut="N" label="next"/>
+            <hotkey shortcut="Ctrl+Down" label="vol -"/>
+            <hotkey shortcut="Ctrl+Up" label="vol +"/>
+            <hotkey shortcut="M" label="mute"/>
+        </application>
+
+        <!--Media Player Classic-->
+        <application name="Media Player Classic" procname="mpc-hc.exe">
+            <hotbtn shortcut="Up"/>
+            <hotbtn shortcut="Down"/>
+            <hotkey shortcut="PgUp" label="previous"/>
+            <hotkey shortcut="Space" label="play/pause"/>
+            <hotkey shortcut="PgDn" label="next"/>
+            <hotkey shortcut="Down" label="vol -"/>
+            <hotkey shortcut="Up" label="vol +"/>
+            <hotkey shortcut="Ctrl+M" label="mute"/>
+            <hotkey shortcut="Alt+Enter" label="full screen"/>
+        </application>
+
+        <!--KMPlayer-->
+        <application name="KMPlayer" procname="KMPlayer.exe">
+            <hotbtn shortcut="Up"/>
+            <hotbtn shortcut="Down"/>
+            <hotkey shortcut="PgUp" label="previous"/>
+            <hotkey shortcut="Space" label="play/pause"/>
+            <hotkey shortcut="PgDn" label="next"/>
+            <hotkey shortcut="Down" label="vol -"/>
+            <hotkey shortcut="Up" label="vol +"/>
+            <hotkey shortcut="M" label="mute"/>
+            <hotkey shortcut="Alt+Enter" label="full screen"/>
+        </application>
+
+        <!--SPlayer-->
+        <application name="SPlayer" procname="splayer.exe">
+            <hotbtn shortcut="Up"/>
+            <hotbtn shortcut="Down"/>
+            <hotkey shortcut="Space" label="play/pause"/>
+            <hotkey shortcut="Down" label="vol -"/>
+            <hotkey shortcut="Up" label="vol +"/>
+        </application>
+
+        <!--Winamp-->
+        <application name="Winamp" procname="winamp.exe">
+            <hotbtn shortcut="Up"/>
+            <hotbtn shortcut="Down"/>
+            <hotkey shortcut="Z" label="previous"/>
+            <hotkey shortcut="X" label="play"/>
+            <hotkey shortcut="C" label="pause"/>
+            <hotkey shortcut="B" label="next"/>
+            <hotkey shortcut="Down" label="vol -"/>
+            <hotkey shortcut="Up" label="vol +"/>
+            <hotkey shortcut="R" label="repeat"/>
+            <hotkey shortcut="S" label="shuffle"/>
+        </application>
+
+        <!--AIMP3-->
+        <application name="AIMP3" procname="AIMP3.exe">
+            <hotbtn shortcut="Ctrl+Up"/>
+            <hotbtn shortcut="Ctrl+Down"/>
+            <hotkey shortcut="F1" label="previous"/>
+            <hotkey shortcut="Space" label="play/pause"/>
+            <hotkey shortcut="F2" label="next"/>
+            <hotkey shortcut="Ctrl+Down" label="vol -"/>
+            <hotkey shortcut="Ctrl+Up" label="vol +"/>
+            <hotkey shortcut="R" label="repeat"/>
+            <hotkey shortcut="S" label="shuffle"/>
+            <hotkey shortcut="V" label="mute"/>
+        </application>
+
+        <!--AIMP2-->
+        <application name="AIMP2" procname="AIMP2.exe">
+            <hotbtn shortcut="Ctrl+Up"/>
+            <hotbtn shortcut="Ctrl+Down"/>
+            <hotkey shortcut="F1" label="previous"/>
+            <hotkey shortcut="Space" label="play/pause"/>
+            <hotkey shortcut="F2" label="next"/>
+            <hotkey shortcut="Ctrl+Down" label="vol -"/>
+            <hotkey shortcut="Ctrl+Up" label="vol +"/>
+            <hotkey shortcut="R" label="repeat"/>
+            <hotkey shortcut="S" label="shuffle"/>
+            <hotkey shortcut="V" label="mute"/>
+        </application>
+
+        <!--Windows Media Player-->
+        <application name="Windows Media Player" procname="wmplayer.exe">
+            <hotbtn shortcut="F9"/>
+            <hotbtn shortcut="F8"/>
+            <hotkey shortcut="Ctrl+B" label="previous"/>
+            <hotkey shortcut="Ctrl+P" label="play/pause"/>
+            <hotkey shortcut="Ctrl+F" label="next"/>
+            <hotkey shortcut="F8" label="vol -"/>
+            <hotkey shortcut="F9" label="vol +"/>
+            <hotkey shortcut="Ctrl+T" label="repeat"/>
+            <hotkey shortcut="Ctrl+H" label="shuffle"/>
+            <hotkey shortcut="Alt+Enter" label="video full screen"/>
+        </application>
+
+        <!--FAR-->
+        <application name="Far" procname="far.exe">
+            <hotkey shortcut="Alt+F7" label="find file"/>
+            <hotkey shortcut="Alt+F11" label="files history"/>
+            <hotkey shortcut="Alt+F12" label="folders history"/>
+            <hotkey shortcut="Shift+F1" label="to archive"/>
+            <hotkey shortcut="Ctrl+U" label="swap panels"/>
+            <hotkey shortcut="Ctrl+O" label="panels on off"/>
+        </application>
+
+        <!--Photoshop-->
+        <application name="Photoshop" procname="photoshop.exe">
+            <hotkey shortcut="V" label="move"/>
+            <hotkey shortcut="M" label="marquee"/>
+            <hotkey shortcut="L" label="lasso"/>
+            <hotkey shortcut="W" label="quick selection"/>
+            <hotkey shortcut="C" label="crop"/>
+            <hotkey shortcut="I" label="eyedropper"/>
+            <hotkey shortcut="J" label="spot healing brush"/>
+            <hotkey shortcut="B" label="brush"/>
+            <hotkey shortcut="S" label="clone stamp"/>
+            <hotkey shortcut="Y" label="history brush"/>
+            <hotkey shortcut="E" label="eraser"/>
+            <hotkey shortcut="G" label="grdient"/>
+            <hotkey shortcut="O" label="dodge"/>
+            <hotkey shortcut="P" label="pen"/>
+            <hotkey shortcut="T" label="horizontal type"/>
+            <hotkey shortcut="A" label="path selection"/>
+            <hotkey shortcut="U" label="rectangle"/>
+            <hotkey shortcut="K" label="object rotate"/>
+            <hotkey shortcut="N" label="camera rotate"/>
+            <hotkey shortcut="R" label="rotate view"/>
+            <hotkey shortcut="Z" label="zoom"/>
+            <hotkey shortcut="X" label="switch colors"/>
+        </application>
+
+        <!--PowerPoint-->
+        <application name="PowerPoint" procname="POWERPNT.EXE">
+            <hotbtn shortcut="Right"/>
+            <hotbtn shortcut="Left"/>
+            <hotkey shortcut="F5" label="start"/>
+            <hotkey shortcut="Left" label="previous slide"/>
+            <hotkey shortcut="Right" label="next slide"/>
+            <hotkey shortcut="B" label="black screen"/>
+            <hotkey shortcut="Esc" label="stop"/>
+        </application>
+
+        <!--Android Emulator-->
+        <application name="Emulator" procname="emulator-arm.exe">
+            <hotkey shortcut="F2" label="menu"/>
+            <hotkey shortcut="Esc" label="back"/>
+            <hotkey shortcut="F3" label="call"/>
+            <hotkey shortcut="F4" label="hangup"/>
+            <hotkey shortcut="F5" label="search"/>
+            <hotkey shortcut="F7" label="power"/>
+            <hotkey shortcut="Ctrl+F5" label="vol up"/>
+            <hotkey shortcut="Ctrl+F6" label="vol down"/>
+            <hotkey shortcut="Ctrl+F12" label="portrait/\nlandscape"/>
+
+        </application>
+
+    </os>
+</Apps>

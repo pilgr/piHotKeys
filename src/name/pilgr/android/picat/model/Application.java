@@ -13,8 +13,8 @@ import java.util.List;
  */
 public class Application {
     public String name = "";
-    public int id = 0;
+    public String id = "";
     public List<Key> keys = new ArrayList<Key>();
-    public HashMap<Integer, Key> buttons = new HashMap<Integer, Key>();
+    public HashMap<String, Key> buttons = new HashMap<String, Key>();
     public String procname = "";
 }
