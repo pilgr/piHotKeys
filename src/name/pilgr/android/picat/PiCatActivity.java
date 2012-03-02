@@ -29,8 +29,6 @@ import net.robotmedia.billing.BillingRequest;
 import net.robotmedia.billing.helper.AbstractBillingObserver;
 import net.robotmedia.billing.model.Transaction;
 
-import java.io.*;
-
 //TODO Показывать рефреш-иконку при старте 4-ки
 //TODO Поправить все менюшки
 public class PiCatActivity extends ActionBarActivity implements OnConnectionActionPerformedListener {
@@ -64,7 +62,6 @@ public class PiCatActivity extends ActionBarActivity implements OnConnectionActi
         BugSenseHandler.setup(this, PrivateKeys.BUGSENSE_API_KEY);
 
         //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        // Creating hotkeys.xml on SD Card
         setContentView(R.layout.main);
 
         //Keep screen on

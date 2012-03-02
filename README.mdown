@@ -1,7 +1,9 @@
 There are sources for Android project [piHotKeys][1]
-piHotKeys - app to control your PC with Android’s touchscreen using hot keys. No more “Ctrl-C”, “Ctrl-Shift-Z” or tons of other shortcuts to remember — just touch the button on the screen!
+piHotKeys - app to control your PC with Android’s touchscreen using hot keys. Just touch the button on the screen to emulate hot keys press on PC!
 
-Project use AndroidBillingLibrary[2] for in-app purchase feature
+Project depends from [AndroidBillingLibrary][2], [piSharedNetwork][3] and [Android Compatibility][4] library.
 
 [1]: https://market.android.com/details?id=name.pilgr.android.picat
 [2]: https://github.com/robotmedia/AndroidBillingLibrary
+[3]: https://github.com/pilgr/piSharedNetwork
+[4]: http://developer.android.com/sdk/compatibility-library.html

@@ -18,7 +18,7 @@
     <string name="dlg_about_header">About</string>
 
     <!--Actually it's a spent time-->
-    <string name="version">1.150</string>
+    <string name="version">1.160</string>
     <string name="about">Touchpad for PC hotkeys\n\nCreated by: Aleksey Masny\npilgr.com\naleksey.masny@gmail.com
     </string>
 
