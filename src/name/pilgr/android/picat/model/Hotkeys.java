@@ -56,7 +56,7 @@ public class Hotkeys {
 
     private void initHotKeys(InputStream currentStream) {
         SAXParser parser = initSaxParser();
-        HotKeysHandler handler = new HotKeysHandler(context);
+        HotKeysHandler handler = new HotKeysHandler();
         try {
             parser.parse(currentStream, handler);
             apps = handler.getApps();
@@ -118,7 +118,7 @@ public class Hotkeys {
             return buffer;
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(context, "Can't read settings file from SD Card", Toast.LENGTH_SHORT).show();
+            Log.e("Can't read file from SD card", e);
             return null;
         }
     }
@@ -134,7 +134,7 @@ public class Hotkeys {
             InputStream input = assetManager.open("hotkeys.xml");
             return input;
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("IOException", e);
         }
         return null;
     }
@@ -160,9 +160,9 @@ public class Hotkeys {
                 pathToFile = hotKeys.getAbsolutePath();
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            Log.e("FileNotFoundException", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("IOException", e);
         }
     }
 
@@ -171,9 +171,9 @@ public class Hotkeys {
         try {
             return factory.newSAXParser();
         } catch (ParserConfigurationException e) {
-            e.printStackTrace();
+            Log.e("ParserConfigurationException", e);
         } catch (SAXException e) {
-            e.printStackTrace();
+            Log.e("SAXException", e);
         }
         return null;
     }

@@ -1,7 +1,5 @@
 package name.pilgr.android.picat.utils;
 
-import android.content.Context;
-import name.pilgr.android.picat.R;
 import name.pilgr.android.picat.model.Application;
 import name.pilgr.android.picat.model.Command;
 import name.pilgr.android.picat.model.Key;
@@ -14,8 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by Samsung Electronics Company Ltd. SURC.
- * User: Roman Shemshei
+ * Created by Roman Shemshei
  * Date: 29.02.12
  * Time: 18:06
  */
@@ -25,12 +22,6 @@ public class HotKeysHandler extends DefaultHandler {
     private HashMap<String, Key> osKeys = new HashMap<String, Key>();
     private HashMap<String, Command> osCommands = new HashMap<String, Command>();
     private Application app = null;
-    private Context context;
-    private int id = 0;
-
-    public HotKeysHandler(Context context_) {
-        context = context_;
-    }
 
     @Override
     public void startDocument() throws SAXException {
@@ -83,7 +74,6 @@ public class HotKeysHandler extends DefaultHandler {
                 app.buttons.put(key.id, key);
             }
         }
-        id++;
     }
 
     @Override
