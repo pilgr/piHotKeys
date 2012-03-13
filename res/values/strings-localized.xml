@@ -10,5 +10,9 @@
     <string name="dialog_rate_app_body">Do you like piHotKeys? Please rate it!</string>
 
     <string name="menuAbout">About</string>
+    <string name="menu_edit">Edit</string>
+    <string name="dialog_edit_header">Edit layout</string>
+    <string name="dialog_edit_body">Temporarily you can edit hotkeys layout using following XML file: &lt;b>%1$s&lt;/b> </string>
 
+    <string name="menu_donate">Donate</string>
 </resources>

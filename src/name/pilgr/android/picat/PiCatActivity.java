@@ -7,11 +7,13 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.PowerManager;
 import android.support.v4.app.FragmentManager;
+import android.text.Html;
 import android.text.SpannableString;
 import android.text.util.Linkify;
 import android.view.*;
@@ -51,6 +53,7 @@ public class PiCatActivity extends ActionBarActivity implements OnConnectionActi
     private static final String FRAGMENT_GRID = "grid";
 
     public static final int DIALOG_RATE_APP = 2;
+    private static final int DIALOG_EDIT_LAYOUT = 3;
 
     /**
      * Called when the activity is first created.
@@ -60,6 +63,8 @@ public class PiCatActivity extends ActionBarActivity implements OnConnectionActi
         Log.d("Creating PiCat activity...");
         super.onCreate(savedInstanceState);
         BugSenseHandler.setup(this, PrivateKeys.BUGSENSE_API_KEY);
+        Analytics.startSession(this);
+        Analytics.trackOpenMainActivity();
 
         //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.main);
@@ -132,7 +137,6 @@ public class PiCatActivity extends ActionBarActivity implements OnConnectionActi
     @Override
     public void onStart() {
         super.onStart();
-        Analytics.startSession(this);
         //To hide after finish Donate activity
         hideDonateIconIfAlreadyDonated();
         Log.d("PiCat activity has been started");
@@ -269,6 +273,10 @@ public class PiCatActivity extends ActionBarActivity implements OnConnectionActi
             case R.id.menu_donate:
                 openDonationActivity();
                 break;
+
+            case R.id.menu_edit:
+                showDialog(DIALOG_EDIT_LAYOUT);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -349,8 +357,8 @@ public class PiCatActivity extends ActionBarActivity implements OnConnectionActi
         switch (id) {
             case DIALOG_RATE_APP:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(R.string.dialog_rate_app_header).setIcon(R.drawable.icon).setMessage(R.string.dialog_rate_app_body).setCancelable(
-                        false).setCancelable(true);
+                builder.setTitle(R.string.dialog_rate_app_header).setIcon(R.drawable.icon).setMessage(R.string.dialog_rate_app_body)
+                        .setCancelable(true);
                 builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
                     @Override
@@ -367,6 +375,19 @@ public class PiCatActivity extends ActionBarActivity implements OnConnectionActi
                     }
                 });
                 return builder.create();
+            case DIALOG_EDIT_LAYOUT:
+                AlertDialog.Builder builderEdit = new AlertDialog.Builder(this);
+
+                Resources res = getResources();
+                String text = String.format(res.getString(R.string.dialog_edit_body), Hotkeys.getHotkeysFilePath());
+                CharSequence styledText = Html.fromHtml(text);
+
+                builderEdit.setTitle(R.string.dialog_edit_header)
+                        .setIcon(R.drawable.ic_menu_edit)
+                        .setMessage(styledText)
+                        .setCancelable(true)
+                        .setNegativeButton(android.R.string.cancel, null);
+                return builderEdit.create();
             default:
                 return null;
         }

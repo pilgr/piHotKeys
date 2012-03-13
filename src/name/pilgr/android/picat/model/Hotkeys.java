@@ -34,13 +34,13 @@ public class Hotkeys {
     public HashMap<String, Key> oskeys = new HashMap<String, Key>();
     public HashMap<String, Command> oscommands = new HashMap<String, Command>();
     private Context context;
-    private final String PATH_TO_FILE = "/Android/data/name.pilgr.android.picat";
-    private final String FILE_NAME = "hotkeys.xml";
+    private static final String PATH_TO_FILE = "/Android/data/name.pilgr.android.picat";
+    private static final String FILE_NAME = "hotkeys.xml";
 
     public Hotkeys(Context ctx) {
         context = ctx;
         InputStream currentStream = null;
-        File hotKeys = new File(Environment.getExternalStorageDirectory() + PATH_TO_FILE + "/" + FILE_NAME);
+        File hotKeys = new File(getHotkeysFilePath());
         if (hotKeys.exists()) {
             try {
                 currentStream = new FileInputStream(hotKeys);
@@ -52,6 +52,10 @@ public class Hotkeys {
             createFileOnSDCard();
         }
         initHotKeys(currentStream);
+    }
+
+    public static String getHotkeysFilePath() {
+        return Environment.getExternalStorageDirectory() + PATH_TO_FILE + "/" + FILE_NAME;
     }
 
     private void initHotKeys(InputStream currentStream) {

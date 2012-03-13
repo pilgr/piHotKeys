@@ -16,6 +16,10 @@ public class Analytics {
         FlurryAgent.onEndSession(ctx);
     }
 
+    public static void trackOpenMainActivity() {
+        FlurryAgent.onEvent("Main. Open");
+    }
+
     public static void trackIsConnected(boolean isConnected) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("isConnected", Boolean.toString(isConnected));

@@ -16,20 +16,30 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@id/menu_refresh"
-          android:title="@string/menu_refresh"
           android:icon="@drawable/action_usb"
           android:orderInCategory="0"
+          android:showAsAction="always"/>
+
+    <item android:id="@+id/menu_edit"
+          android:title="@string/menu_edit"
+          android:icon="@drawable/ic_menu_edit"
+          android:orderInCategory="1"
           android:showAsAction="always"/>
 
     <item android:id="@+id/menu_donate"
           android:title="@string/menu_donate"
           android:icon="@drawable/donate"
-          android:orderInCategory="1"
+          android:orderInCategory="2"
           android:showAsAction="ifRoom"/>
 
     <item android:id="@+id/menu_feedback"
           android:title="@string/menu_feedback"
           android:icon="@drawable/ic_menu_start_conversation"
-          android:orderInCategory="2"
+          android:orderInCategory="3"
+          android:showAsAction="never"/>
+
+    <item android:id="@+id/menu_about"
+          android:title="@string/menuAbout"
+          android:orderInCategory="4"
           android:showAsAction="never"/>
 </menu>

@@ -31,5 +31,6 @@
     <string name="dialog_rate_app_body">Вам нравится piHotKeys? Поставьте ему достойную оценку!</string>
 
     <string name="menuAbout">О приложении</string>
+    <string name="menu_donate">Пожертвовать</string>
 
 </resources>
